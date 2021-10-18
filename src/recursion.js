@@ -72,22 +72,42 @@ var isEven = function(n) {
 // sumBelow(10); // 45
 // sumBelow(7); // 21
 var sumBelow = function(n) {
-  // var sum = 0;
-  // n = Math.abs(n);
-  // if (n === 0) {
-  //   return sum;
-  // }
-  // var i = 0;
-  // while(i < n) {
-  //   sum += sumBelow(n - 1);
-  //   i++;
-  // }
-  // return sum;
+  var sum = 0;
+  var count = 0;
+
+
+
+
+  if (n === 0) {
+    return sum;
+  }
+  if (n > 0) {
+    sum = n + sumBelow(n - 1);
+    count ++;
+  }
+  if (n < 0) {
+    sum = n + sumBelow(n + 1);
+    count ++;
+  }
+
+
+  if (sum > 0) {
+    return sum - count;
+  } else {
+    return sum + count;
+  }
 };
 
 // 6. Get the integers within a range (x, y).
 // range(2,9); // [3,4,5,6,7,8]
 var range = function(x, y) {
+  // declare range array
+  // var rangeArr = [];
+  // // if x === y
+  //   //return rangeArr
+  // // if x > y
+  // // if x < y
+
 };
 
 // 7. Compute the exponent of a number.
