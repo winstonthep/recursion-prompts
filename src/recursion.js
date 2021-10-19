@@ -101,12 +101,33 @@ var sumBelow = function(n) {
 // 6. Get the integers within a range (x, y).
 // range(2,9); // [3,4,5,6,7,8]
 var range = function(x, y) {
-  // declare range array
-  // var rangeArr = [];
-  // // if x === y
-  //   //return rangeArr
-  // // if x > y
-  // // if x < y
+
+  var rangeArr = [];
+  if ((Math.abs(x - y)) <= 1) {
+    return rangeArr;
+  }
+
+
+  if (x > y) {
+
+    while (x > y) {
+      rangeArr.push(x);
+      range(x - 1, y);
+      x--;
+    }
+  }
+
+  if (x < y) {
+
+    while (x < y) {
+      rangeArr.push(x);
+      range(x + 1, y);
+      x++;
+    }
+  }
+  rangeArr.shift();
+
+  return rangeArr;
 
 };
 
@@ -116,6 +137,21 @@ var range = function(x, y) {
 // exponent(4,3); // 64
 // https://www.khanacademy.org/computing/computer-science/algorithms/recursive-algorithms/a/computing-powers-of-a-number
 var exponent = function(base, exp) {
+  var product = 1;
+  if (exp === 0) {
+    // return product
+    return product;
+  }
+
+  if (exp < 0) {
+    product /= base / exponent(base, exp + 1);
+  }
+  if (exp > 0) {
+  product *= base * exponent(base, exp - 1);
+  }
+
+  // return product
+  return product;
 };
 
 // 8. Determine if a number is a power of two.
@@ -123,14 +159,55 @@ var exponent = function(base, exp) {
 // powerOfTwo(16); // true
 // powerOfTwo(10); // false
 var powerOfTwo = function(n) {
+  // need to divide the number continually by two until we reach one
+  // if n = 1
+  if (n === 1) {
+    // return true
+    return true;
+  }
+  if (n < 1) {
+    return false;
+  }
+  // else return divide n by 2
+  return powerOfTwo(n / 2);
 };
 
 // 9. Write a function that reverses a string.
 var reverse = function(string) {
+  // declare an empty string
+  var reversedString = '';
+  // if string  isn't a string
+  if (string.length === 1) {
+    //return string
+    return string;
+  }
+  // iterate through string from end
+  for (var i = string.length - 1; i > -1; i--) {
+    reversedString += reverse(string[i]);
+  }
+    //add string item to empty string
+  // return string
+  return reversedString;
 };
 
 // 10. Write a function that determines if a string is a palindrome.
 var palindrome = function(string) {
+   // declare an empty string
+   var reversedString = '';
+   // if string  isn't a string
+   if (string.length === 1) {
+     //return string
+     return string;
+   }
+   // iterate through string from end
+   for (var i = string.length - 1; i > -1; i--) {
+     reversedString += string[i];
+   }
+
+   if (reversedString.toLowerCase() !== string.toLowerCase()) {
+     return false;
+   }
+   return true;
 };
 
 // 11. Write a function that returns the remainder of x divided by y without using the
