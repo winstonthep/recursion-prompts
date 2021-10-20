@@ -192,22 +192,54 @@ var reverse = function(string) {
 
 // 10. Write a function that determines if a string is a palindrome.
 var palindrome = function(string) {
-   // declare an empty string
-   var reversedString = '';
-   // if string  isn't a string
-   if (string.length === 1) {
-     //return string
-     return string;
-   }
-   // iterate through string from end
-   for (var i = string.length - 1; i > -1; i--) {
-     reversedString += string[i];
-   }
+  //  // declare an empty string
+  //  var reversedString = '';
+  //  // if string  isn't a string
+  //
+  //  // iterate through string from end
+  //  for (var i = string.length - 1; i > -1; i--) {
+  //    reversedString += string[i];
+  //  }
 
-   if (reversedString.toLowerCase() !== string.toLowerCase()) {
-     return false;
-   }
-   return true;
+  //  if (reversedString.toLowerCase() !== string.toLowerCase()) {
+  //    return false;
+  //  }
+  //  return true;
+
+  // if length of streng is one
+  // return true that it is a palindrome
+  // need to reverse the string
+  // check if index of each element in the reversed string is the same
+  //in the original string
+  // var reversedString = '';
+
+  // for (var i = string.length - 1; i > -1; i--) {
+  //      reversedString += string[i];
+  // }
+  // if (string.toLowerCase() === reversedString.toLowerCase()) {
+  //   return  string.toLowerCase();
+  // }
+  // return false;
+  // return false;
+  var lowerString = string.toLowerCase();
+  if (string.length === 1) {
+       //return string
+       return true;
+  }
+  // palindrome(string[0].toLowerCase()) === palindrome(string[string.length - 1].toLowerCase());
+  if (lowerString[0] === lowerString[lowerString.length - 1] && lowerString.length > 1) {
+    var shortened = lowerString.substring(1, lowerString.length - 1);
+    return palindrome(shortened);
+  }
+  return false;
+
+  // for (var j = 0; j < reversedString.length; j++) {
+  //   if(reversedString[j].toLowerCase() === palindrome(string[j])) {
+  //     return true;
+
+  //   }
+  //   return false;
+  // }
 };
 
 // 11. Write a function that returns the remainder of x divided by y without using the
@@ -289,6 +321,17 @@ var countKeysInObj = function(obj, key) {
 // countValuesInObj(obj, 'r') // 2
 // countValuesInObj(obj, 'e') // 1
 var countValuesInObj = function(obj, value) {
+  if(typeof obj !== 'object') {
+    return obj;
+  }
+  var count = 0;
+  for (var key in obj) {
+    if (obj[key] === value) {
+      countValuesInObj(obj, value);
+      count++;
+    }
+  }
+  return count;
 };
 
 // 24. Find all keys in an object (and nested objects) by a provided name and rename
